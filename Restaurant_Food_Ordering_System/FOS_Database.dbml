@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Order" Class="OrderDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Order.mdf;Integrated Security=True" SettingsObjectName="orderPayment.My.MySettings" SettingsPropertyName="OrderConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.MenuItem" Member="MenuItems">
+    <Type Name="MenuItem">
+      <Column Name="MenuItemID" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="price" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Table" Member="Tables">
+    <Type Name="Table">
+      <Column Name="TableID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Association Name="Tables_Order" Member="Orders" ThisKey="TableID" OtherKey="TableID" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Order]" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderID" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TableID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
+      <Column Name="voucherID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totalPayment" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="tax" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="grandTotal" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Association Name="Tables_Order" Member="Table" Storage="_Tables" ThisKey="TableID" OtherKey="TableID" Type="Table" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
