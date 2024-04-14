@@ -1,3 +1,3 @@
-﻿Public Class FormHome
+﻿Public Class FrmHome
 
 End Class
